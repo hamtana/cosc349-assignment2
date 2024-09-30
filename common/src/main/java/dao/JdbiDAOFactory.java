@@ -12,7 +12,7 @@ public class JdbiDAOFactory {
 
     //For running with docker.
     private static String dockerUri = "jdbc:postgresql://db:5432/cosc349_database";
-
+    private static String awsUri = "jdbc:postgresql://cosc349-database.ceagrzeyldkp.us-east-1.rds.amazonaws.com:5432/cosc349_database";
     //For running locally for testing.
     private static String jdbiUri = "jdbc:postgresql://localhost:1234/cosc349_database";
 
@@ -28,8 +28,9 @@ public class JdbiDAOFactory {
 
     public static void initialisePool(){
         HIKARI_DATA_SOURCE = new HikariDataSource();
-        HIKARI_DATA_SOURCE.setJdbcUrl(dockerUri);
+//        HIKARI_DATA_SOURCE.setJdbcUrl(dockerUri);
 //        HIKARI_DATA_SOURCE.setJdbcUrl(jdbiUri);
+        HIKARI_DATA_SOURCE.setJdbcUrl(awsUri);
         HIKARI_DATA_SOURCE.setUsername(DB_USERNAME);
         HIKARI_DATA_SOURCE.setPassword(DB_PASSWORD);
         JDBI = Jdbi.create(HIKARI_DATA_SOURCE);
