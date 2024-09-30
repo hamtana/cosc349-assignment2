@@ -6,8 +6,8 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 public class JdbiDAOFactory {
 
-    private static final String DB_USERNAME = "admin";
-    private static final String DB_PASSWORD = "admin";
+    private static final String DB_USERNAME = "postgres";
+    private static final String DB_PASSWORD = "admin-cosc349";
     private static final String DB_Name = "cosc349_database";
 
     //For running with docker.
