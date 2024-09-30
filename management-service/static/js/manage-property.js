@@ -2,6 +2,7 @@
 var propertiesApi = '/api/properties';
 var propertiesApiAddress = (address) => `/api/properties/${address}`;
 var managerApi = (username) => `/api/managers/${username}`;
+
 var requestAiTenant = (username) => `/api/requests/tenant/${username}`;
 
 const app = Vue.createApp({

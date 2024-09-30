@@ -1,6 +1,6 @@
 /* global Vue, axios */
 var propertiesApi = '/api/properties';
-var requestApiTenant = (username) => `http://localhost:8080/api/requests/${username}`;
+var requestApiTenant = (username) => `/api/requests/${username}`;
 var managementApi = '/api/management';
 
 const app = Vue.createApp({
