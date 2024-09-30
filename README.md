@@ -1,4 +1,4 @@
-# COSC349-assignment1
+# COSC349-assignment2
 
 ## Project Information
 For this assignment a database and two other web services were designed. 
