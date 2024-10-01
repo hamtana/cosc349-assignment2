@@ -29,7 +29,7 @@ While the request and management services each contain java web server code and 
 6. Run the docker containers
     - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
     - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
-7. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service.
+7. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
 
 
 ### To Run the project once it is shutdown (Subsequent Deployments)
@@ -41,7 +41,7 @@ While the request and management services each contain java web server code and 
 4. Run the docker containers
     - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
     - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
-5. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service.
+5. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
 
 
 ### Once EC2 instances are running 
