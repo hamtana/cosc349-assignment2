@@ -17,18 +17,32 @@ Within the root of this repository is a build.gradle with dependencies to 3 othe
 The common directory contains all the Data Access objects & Domain classes. 
 While the request and management services each contain java web server code and specification for the end-points for each service.
 
-### To run the project follow these steps:
-1. clone the repository
-2. ensure you have docker desktop running.
-3. Run the command **docker compose up** within the assignment1 directory.
+### To run the project on AWS please follow these steps (First Time Deployment)
+1. Create an two EC2 instances, one for the Request Service and one for the Management Service.
+2. Configure the port mappings for IPv4 and IPv6 inbound traffic - 8080 for Request Service and 8081 for the Management Service.
+2. SSH into each instance either through the terminal or the AWS console.
+3. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
+4. Start the Docker service by running `sudo service docker start`
+5. Pull the image from Docker Hub
+    - For the Request Service run `docker pull hamish27/cosc349-request-service:latest`
+    - For the Management Service run `docker pull hamish27/cosc349-management-service:latest`
+6. Run the docker containers
+    - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
+    - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
+7. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service.
 
-### Once Docker containers are running 
 
-Use this login to get into the Manger service running on : http://localhost:8081
+### To Run the project once it is shutdown (Subsequent Deployments)
+1. 
+
+
+### Once EC2 instances are running 
+
+Use this login to get into the Manger service running on the public IP address.
 * Username: johndoe
 * Password: test
 
-Use this login for the Tenant Service running on http://localhost:8080
+Use this login for the Tenant Service running the other EC2 instance on the public IP address.
 * Username: alicebrown
 * Password: test
 
