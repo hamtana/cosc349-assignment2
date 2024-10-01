@@ -33,23 +33,27 @@ While the request and management services each contain java web server code and 
 
 
 ### To Run the project once it is shutdown (Subsequent Deployments)
-1. 
+1. SSH into each EC2 instance 
+2. Run `docker system prune -a -f`
+3. Pull the image from Docker Hub
+    - For the Request Service run `docker pull hamish27/cosc349-request-service:latest`
+    - For the Management Service run `docker pull hamish27/cosc349-management-service:latest`
+4. Run the docker containers
+    - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
+    - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
+5. The services should now be running on the public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service.
 
 
 ### Once EC2 instances are running 
 
 Use this login to get into the Manger service running on the public IP address.
-* Username: johndoe
-* Password: test
+* Username: `johndoe`
+* Password: `test`
 
 Use this login for the Tenant Service running the other EC2 instance on the public IP address.
-* Username: alicebrown
-* Password: test
+* Username: `alicebrown`
+* Password: `test`
 
-### To shut down the project
-1. Run **docker compose down**
-2. To remove the images - type **docker image pune <containerimageID>**
-3. To remove the volume (database storage) - type **docker volume ls** & then **docker volume rm <image-name>**
 
 #### Notes
 

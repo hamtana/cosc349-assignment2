@@ -1,4 +1,4 @@
-rootProject.name = "assignment1";
+rootProject.name = "assignment2";
 include "management-service";
 include "request-service";
 include "common";
