@@ -46,7 +46,10 @@ public class ManagerModule extends Jooby {
             String password = manager.getPassword();
             CharBuffer hash = Argon2Helper.hashPasswordChar(password);
             manager.setPassword(hash.toString());
+
             dao.saveManager(manager);
+            sendEmailNotifcation(manager); // Call the send email notifcation method.
+
             return ctx.send(StatusCode.CREATED);
 
         });
