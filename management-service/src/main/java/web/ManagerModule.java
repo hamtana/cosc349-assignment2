@@ -9,9 +9,18 @@ import helpers.Argon2Helper;
 import io.jooby.Jooby;
 import io.jooby.StatusCode;
 
+//Amazon Imports
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sns.SnsClient;
+import software.amazon.awssdk.services.sns.model.PublishRequest;
+import software.amazon.awssdk.services.sns.model.PublishResponse;
+
 import java.nio.CharBuffer;
 
 public class ManagerModule extends Jooby {
+
+    private final SnsClient snsClient;
+    private final String topicArn = "arn:aws:sns:us-east-1:281765895893:registration";
 
     public ManagerModule(ManagerDAO dao){
 
