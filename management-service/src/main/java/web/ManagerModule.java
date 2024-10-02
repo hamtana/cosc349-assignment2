@@ -24,6 +24,11 @@ public class ManagerModule extends Jooby {
 
     public ManagerModule(ManagerDAO dao){
 
+        //Start up the client
+        snsClient = SnsClient.builder()
+                .region(Region.US_EAST_1)
+                .build();
+
         get("/api/managers/{username}", ctx -> {
             String username = ctx.path("username").value();
             Manager manager = dao.getManagerByUsername(username);
@@ -49,5 +54,20 @@ public class ManagerModule extends Jooby {
 
 
 
+    }
+
+    private void sendEmailNotifcation(Manager manager){
+        String message = "A new manager has been registered with created:\n\n" +
+                "Name: " + manager.getFirstName() + "\n" +
+                "Email: " + manager.getUsername() + "\n" ;
+
+        PublishRequest request = PublishRequest.builder()
+                .message(message)
+                .subject("New Manager Account Created")
+                .topicArn(topicArn)
+                .build();
+
+        PublishResponse result = snsClient.publish(request);
+        System.out.println("Message sent to topic with ID:" + result.messageId());
     }
 }
