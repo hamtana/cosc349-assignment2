@@ -2,6 +2,3 @@ rootProject.name = "assignment2";
 include "management-service";
 include "request-service";
 include "common";
-include 'management-service:static'
-findProject(':management-service:static')?.name = 'static'
-
