@@ -24,22 +24,23 @@ While the request and management services each contain java web server code and 
 ### First time Deployment on AWS
 1. Create an two EC2 instances, one for the Request Service and one for the Management Service.
 2. Configure the port mappings for IPv4 and IPv6 inbound traffic - 8080 for the Request Service and 8081 for the Management Service.
-3. Pull the repository to your local machine. 
-4. Navigate to the root of the repository, and open the docker compose file. 
-5. Add in your AWS credentials as environment variables. This allows the docker container images to connect with the Simple Notification Service.
-6. Run `docker compose build`. 
-7. Tag the images with your Docker Hub username. e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
-8. Push the images to Docker Hub. e.g `docker push {docker-username}/cosc349-request-service:latest`
-9. SSH into each EC2 instance either through the terminal or the AWS console.
-10. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
-11. Start the Docker service by running `sudo service docker start`
-12. Pull the image from Docker Hub
+3. If you wish to receive emails detailing new users, please see below section on how to set up SNS for your email address.
+4. Pull the repository to your local machine. 
+5. Navigate to the root of the repository, and open the docker compose file. 
+6. Add in your AWS credentials as environment variables. This allows the docker container images to connect with the Simple Notification Service.
+7. Run `docker compose build`. 
+8. Tag the images with your Docker Hub username. e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
+9. Push the images to Docker Hub. e.g `docker push {docker-username}/cosc349-request-service:latest`
+10. SSH into each EC2 instance either through the terminal or the AWS console.
+11. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
+12. Start the Docker service by running `sudo service docker start`
+13. Pull the image from Docker Hub
      - For the Request Service run `docker pull hamish27/cosc349-request-service:latest`
      - For the Management Service run `docker pull hamish27/cosc349-management-service:latest`
-13. Run the docker containers
+14. Run the docker containers
      - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
      - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
-14. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
+15. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
 
 ### Subsequent Deployments
 1. SSH into each EC2 instance 
@@ -57,7 +58,11 @@ While the request and management services each contain java web server code and 
 9. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify.
 
 
-
+### Accessing SNS (Simple Notification Service) on AWS
+1. Navigate to the AWS console and search for Simple Notification Service.
+2. Click on the topics tab and click on registrations 
+3. Subscribe to the topic by entering your email address and clicking subscribe.
+4. Any new users will now be sent through to your email address.
 
 ### Once EC2 instances are running 
 
