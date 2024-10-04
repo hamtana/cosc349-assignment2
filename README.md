@@ -13,7 +13,7 @@ An extension has been added using AWS's Simple Notification Service, whereby a d
 Both the Request & Management service containers are served by a database; a single container running a PostgreSQL.
 
 ### Description of the Repository:
-Within the root of this repository is a build.gradle with dependencies to 3 other sub-projects, common, request-service and management-service. 
+Within the root of this repository is a build.gradle with dependencies to 3 other subprojects, common, request-service and management-service. 
 The common directory contains all the Data Access objects & Domain classes. 
 While the request and management services each contain java web server code and specification for the end-points for each service.
 
@@ -22,7 +22,7 @@ While the request and management services each contain java web server code and 
 - Management Service: [http://100.28.69.129:8081]
 
 ### First time Deployment on AWS
-1. Create an two EC2 instances, one for the Request Service and one for the Management Service.
+1. Create a two EC2 instances, one for the Request Service and one for the Management Service.
 2. Configure the port mappings for IPv4 and IPv6 inbound traffic - 8080 for the Request Service and 8081 for the Management Service.
 3. If you wish to receive emails detailing new users, please see below section on how to set up SNS for your email address.
 4. Pull the repository to your local machine. 
@@ -64,7 +64,7 @@ While the request and management services each contain java web server code and 
 3. Subscribe to the topic by entering your email address and clicking subscribe.
 4. Any new users will now be sent through to your email address.
 
-### Once EC2 instances are running 
+### Once EC2 instances are set up
 
 Use this login to get into the Manger service running on the public IP address.
 * Username: `johndoe`
