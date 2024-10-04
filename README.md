@@ -8,7 +8,7 @@ Once the work request has been completed, the tenant can update the request, mar
 
 The management service provides functionality for managers to create an account, add a property and manage their properties.
 Managers will be able to see the number requests from the tenant and make requests for that to work to be completed.
-An extension has been added using AWS's Simple Notification Service, whereby a developer can monitor users creating accounts, ensuring valid data is being entered.
+An extension has been added using AWS's Simple Notification Service, whereby a developer can monitor users creating accounts, ensuring valid data is being entered. The data from this operation could be forwarded through to use in agencies that manage the property managers.
 
 Both the Request & Management service containers are served by a database; a single container running a PostgreSQL.
 

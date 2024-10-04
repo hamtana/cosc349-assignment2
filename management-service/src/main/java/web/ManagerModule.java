@@ -22,7 +22,7 @@ public class ManagerModule extends Jooby {
     private final SnsClient snsClient;
     private final String topicArn = "arn:aws:sns:us-east-1:281765895893:registration";
 
-    public ManagerModule(ManagerDAO dao){
+    public ManagerModule(ManagerDAO dao) {
 
         //Start up the client
         snsClient = SnsClient.builder()
@@ -33,7 +33,7 @@ public class ManagerModule extends Jooby {
             String username = ctx.path("username").value();
             Manager manager = dao.getManagerByUsername(username);
 
-            if (manager == null){
+            if (manager == null) {
                 return ctx.send(StatusCode.NOT_FOUND);
             } else {
                 return manager;
@@ -48,18 +48,15 @@ public class ManagerModule extends Jooby {
             manager.setPassword(hash.toString());
 
             dao.saveManager(manager);
-            sendEmailNotifcation(manager); // Call the send email notifcation method.
+            sendEmailNotification(manager); // Call the send email notification method.
 
             return ctx.send(StatusCode.CREATED);
 
         });
 
-
-
-
     }
 
-    private void sendEmailNotifcation(Manager manager){
+    private void sendEmailNotification(Manager manager){
 
         StringBuilder emailBody = new StringBuilder();
         emailBody.append("A new manager has been registered\n\n");
@@ -77,3 +74,4 @@ public class ManagerModule extends Jooby {
         System.out.println("Message sent to topic with ID:" + result.messageId());
     }
 }
+
