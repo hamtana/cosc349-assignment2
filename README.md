@@ -64,7 +64,7 @@ While the request and management services each contain java web server code and 
 3. Subscribe to the topic by entering your email address and clicking subscribe.
 4. Any new users will now be sent through to your email address.
 
-### Once EC2 instances are set up
+### Using the Request & Management Service
 
 Use this login to get into the Manger service running on the public IP address.
 * Username: `johndoe`
