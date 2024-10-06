@@ -12,14 +12,10 @@ An extension has been added using AWS's Simple Notification Service, whereby a d
 
 Both the Request & Management service containers are served by a database; a single container running a PostgreSQL.
 
-### Description of the Repository:
+### Description of the Repository
 Within the root of this repository is a build.gradle with dependencies to 3 other subprojects, common, request-service and management-service. 
 The common directory contains all the Data Access objects & Domain classes. 
 While the request and management services each contain java web server code and specification for the end-points for each service.
-
-### Accessing the Services on my AWS EC2 Instances
-- Request Service: [http://54.209.64.249:8080]
-- Management Service: [http://100.28.69.129:8081]
 
 ### First time Deployment on AWS
 1. Create a two EC2 instances, one for the Request Service and one for the Management Service.
@@ -27,20 +23,40 @@ While the request and management services each contain java web server code and 
 3. If you wish to receive emails detailing new users, please see below section on how to set up SNS for your email address.
 4. Pull the repository to your local machine. 
 5. Navigate to the root of the repository, and open the docker compose file. 
-6. Add in your AWS credentials as environment variables. This allows the docker container images to connect with the Simple Notification Service.
-7. Run `docker compose build`. 
-8. Tag the images with your Docker Hub username. e.g `docker tag assignment2-request-service:latest {docker-username}/cosc349-request-service:latest`
-9. Push the images to Docker Hub. e.g `docker push {docker-username}/assignment2-request-service:latest`
-10. SSH into each EC2 instance either through the terminal or the AWS console.
-11. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
-12. Start the Docker service by running `sudo service docker start`
-13. Pull the image from Docker Hub
-     - For the Request Service run `docker pull {docker-username}/assignment2-request-service:latest`
-     - For the Management Service run `docker pull {docker-username}/assignment2-management-service:latest`
-14. Run the docker containers
+6. Run
+
+`docker compose build`.
+
+7. Tag the images with your Docker Hub username.
+
+e.g `docker tag assignment2-request-service:latest {docker-username}/cosc349-request-service:latest`
+
+8. Push the images to Docker Hub. 
+
+e.g `docker push {docker-username}/assignment2-request-service:latest`
+
+9. SSH into each EC2 instance either through the terminal or the AWS console.
+10. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
+
+11. Start the Docker service by running 
+
+`sudo service docker start`
+
+12. Pull the image from Docker Hub
      - For the Request Service run 
+    
+    `docker pull {docker-username}/assignment2-request-service:latest`
+
+     - For the Management Service run
+    
+    `docker pull {docker-username}/assignment2-management-service:latest`
+13. Run the docker containers
+     - For the Request Service run 
+    
     `docker run -d -p 8080:8080 --name request-service hamish27/assignment2-request-service:latest`
-     - For the Management Service run - pass in the AWS Credentials using the following template:
+
+     - For the Management Service run - pass in the AWS Credentials, port number using the following template:
+    
     `docker run -d \
   -p 8081:8081 \
   -e AWS_ACCESS_KEY_ID={access_key_id} \
@@ -48,30 +64,49 @@ While the request and management services each contain java web server code and 
   -e AWS_SESSION_TOKEN={session_token} \
   -e AWS_REGION=us-east-1 \
   {docker-username}/assignment2-management-service:latest`
-15. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
 
 ### Subsequent Deployments
 1. SSH into each EC2 instance 
-2. Run `docker system prune -a -f`
-3. On your local machine navigate to the root of the repository and update the docker compose file with your AWS credentials as environment variables.
-4. Run `docker compose build`
-5. Tag the images with your Docker Hub username. e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
-6. Push the images to Docker Hub. e.g `docker push {docker-username}/cosc349-request-service:latest`
-7. Pull the image from Docker Hub
-    - For the Request Service run `docker pull {docker-username}/cosc349-request-service:latest`
-    - For the Management Service run `docker pull {docker-username}/cosc349-management-service:latest`
-8. Run the docker containers
-    - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
-        - For the Management Service run - pass in the AWS Credentials using the following template:
-          `docker run -d \
-        -p 8081:8081 \
-        -e AWS_ACCESS_KEY_ID={access_key_id} \
-        -e AWS_SECRET_ACCESS_KEY={secret_access_key} \
-        -e AWS_SESSION_TOKEN={session_token} \
-        -e AWS_REGION=us-east-1 \
-        {docker-username}/assignment2-management-service:latest`
-9. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify.
 
+2. Run:
+
+`docker system prune -a -f`
+3. Run:
+
+
+`docker compose build`
+4. Tag the images with your Docker Hub username.
+
+e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
+5. Push the images to Docker Hub.
+
+e.g `docker push {docker-username}/cosc349-request-service:latest`
+
+6. Pull the image from Docker Hub
+    - For the Request Service run 
+   
+   `docker pull {docker-username}/cosc349-request-service:latest`
+
+    - For the Management Service run 
+   
+   `docker pull {docker-username}/cosc349-management-service:latest`
+7. Run the docker containers
+    - For the Request Service run 
+   
+   `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
+    - For the Management Service run - pass in the AWS Credentials, port number using the following template:
+           
+   `docker run -d \
+         -p 8081:8081 \
+         -e AWS_ACCESS_KEY_ID={access_key_id} \
+         -e AWS_SECRET_ACCESS_KEY={secret_access_key} \
+         -e AWS_SESSION_TOKEN={session_token} \
+         -e AWS_REGION=us-east-1 \
+         {docker-username}/assignment2-management-service:latest`
+
+### Accessing the Services on my AWS EC2 Instances (If Running)
+- Request Service: [http://54.209.64.249:8080]
+- Management Service: [http://100.28.69.129:8081]
 
 ### Accessing SNS (Simple Notification Service) on AWS
 1. Navigate to the AWS console and search for Simple Notification Service.
