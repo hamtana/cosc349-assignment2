@@ -58,14 +58,13 @@ public class ManagerModule extends Jooby {
 
     private void sendEmailNotification(Manager manager){
 
-        StringBuilder emailBody = new StringBuilder();
-        emailBody.append("A new manager has been registered\n\n");
-        emailBody.append("First Name: ").append(manager.getFirstName()).append("\n");
-        emailBody.append("Last Name: ").append(manager.getLastName()).append("\n");
-        emailBody.append("Email: ").append(manager.getUsername()).append("\n");
+        String message = "Hello " + manager.getFirstName() + " " + manager.getLastName() + ",\n\n" +
+                "Your manager account has been created. You can now log in to the management system using your username: " + manager.getUsername() + "\n\n" +
+                "Thank you,\n" +
+                "Management System Team";
 
         PublishRequest request = PublishRequest.builder()
-                .message(emailBody.toString())
+                .message(message)
                 .subject("New Manager Account Created")
                 .topicArn(topicArn)
                 .build();

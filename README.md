@@ -29,17 +29,25 @@ While the request and management services each contain java web server code and 
 5. Navigate to the root of the repository, and open the docker compose file. 
 6. Add in your AWS credentials as environment variables. This allows the docker container images to connect with the Simple Notification Service.
 7. Run `docker compose build`. 
-8. Tag the images with your Docker Hub username. e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
-9. Push the images to Docker Hub. e.g `docker push {docker-username}/cosc349-request-service:latest`
+8. Tag the images with your Docker Hub username. e.g `docker tag assignment2-request-service:latest {docker-username}/cosc349-request-service:latest`
+9. Push the images to Docker Hub. e.g `docker push {docker-username}/assignment2-request-service:latest`
 10. SSH into each EC2 instance either through the terminal or the AWS console.
 11. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
 12. Start the Docker service by running `sudo service docker start`
 13. Pull the image from Docker Hub
-     - For the Request Service run `docker pull hamish27/cosc349-request-service:latest`
-     - For the Management Service run `docker pull hamish27/cosc349-management-service:latest`
+     - For the Request Service run `docker pull {docker-username}/assignment2-request-service:latest`
+     - For the Management Service run `docker pull {docker-username}/assignment2-management-service:latest`
 14. Run the docker containers
-     - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
-     - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
+     - For the Request Service run 
+    `docker run -d -p 8080:8080 --name request-service hamish27/assignment2-request-service:latest`
+     - For the Management Service run - pass in the AWS Credentials using the following template:
+    `docker run -d \
+  -p 8081:8081 \
+  -e AWS_ACCESS_KEY_ID={access_key_id} \
+  -e AWS_SECRET_ACCESS_KEY={secret_access_key} \
+  -e AWS_SESSION_TOKEN={session_token} \
+  -e AWS_REGION=us-east-1 \
+  {docker-username}/assignment2-management-service:latest`
 15. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify
 
 ### Subsequent Deployments
@@ -54,7 +62,14 @@ While the request and management services each contain java web server code and 
     - For the Management Service run `docker pull {docker-username}/cosc349-management-service:latest`
 8. Run the docker containers
     - For the Request Service run `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
-    - For the Management Service run `docker run -d -p 8081:8081 --name management-service hamish27/cosc349-management-service:latest`
+        - For the Management Service run - pass in the AWS Credentials using the following template:
+          `docker run -d \
+        -p 8081:8081 \
+        -e AWS_ACCESS_KEY_ID={access_key_id} \
+        -e AWS_SECRET_ACCESS_KEY={secret_access_key} \
+        -e AWS_SESSION_TOKEN={session_token} \
+        -e AWS_REGION=us-east-1 \
+        {docker-username}/assignment2-management-service:latest`
 9. The services should now be running on the Public IP of the EC2 instances on ports 8080 for Request Service and 8081 for the Management Service. Run `docker ps` to verify.
 
 
@@ -62,7 +77,7 @@ While the request and management services each contain java web server code and 
 1. Navigate to the AWS console and search for Simple Notification Service.
 2. Click on the topics tab and click on registrations 
 3. Subscribe to the topic by entering your email address and clicking subscribe.
-4. Any new users will now be sent through to your email address.
+4. Any new managers will now be sent through to your email address.
 
 ### Using the Request & Management Service
 
