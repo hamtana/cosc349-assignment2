@@ -36,9 +36,10 @@ e.g `docker tag assignment2-request-service:latest {docker-username}/cosc349-req
 e.g `docker push {docker-username}/assignment2-request-service:latest`
 
 9. SSH into each EC2 instance either through the terminal or the AWS console.
-10. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
+    
+11. Install Docker on each instance by running `sudo yum update` & `sudo yum install docker`
 
-11. Start the Docker service by running 
+12. Start the Docker service by running 
 
 `sudo service docker start`
 
@@ -50,7 +51,8 @@ e.g `docker push {docker-username}/assignment2-request-service:latest`
      - For the Management Service run
     
     `docker pull {docker-username}/assignment2-management-service:latest`
-13. Run the docker containers
+    
+14. Run the docker containers
      - For the Request Service run 
     
     `docker run -d -p 8080:8080 --name request-service hamish27/assignment2-request-service:latest`
@@ -75,9 +77,11 @@ e.g `docker push {docker-username}/assignment2-request-service:latest`
 
 
 `docker compose build`
+
 4. Tag the images with your Docker Hub username.
 
 e.g `docker tag cosc349-request-service:latest {docker-username}/cosc349-request-service:latest`
+
 5. Push the images to Docker Hub.
 
 e.g `docker push {docker-username}/cosc349-request-service:latest`
@@ -90,7 +94,8 @@ e.g `docker push {docker-username}/cosc349-request-service:latest`
     - For the Management Service run 
    
    `docker pull {docker-username}/cosc349-management-service:latest`
-7. Run the docker containers
+   
+8. Run the docker containers
     - For the Request Service run 
    
    `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
