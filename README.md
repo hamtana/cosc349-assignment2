@@ -55,7 +55,7 @@ e.g `docker push {docker-username}/assignment2-request-service:latest`
 14. Run the docker containers
      - For the Request Service run 
     
-    `docker run -d -p 8080:8080 --name request-service hamish27/assignment2-request-service:latest`
+    `docker run -d -p 8080:8080 --name request-service {docker-username}/assignment2-request-service:latest`
 
      - For the Management Service run - pass in the AWS Credentials, port number using the following template:
     
@@ -98,7 +98,7 @@ e.g `docker push {docker-username}/cosc349-request-service:latest`
 8. Run the docker containers
     - For the Request Service run 
    
-   `docker run -d -p 8080:8080 --name request-service hamish27/cosc349-request-service:latest`
+   `docker run -d -p 8080:8080 --name request-service {docker-username}/cosc349-request-service:latest`
     - For the Management Service run - pass in the AWS Credentials, port number using the following template:
            
    `docker run -d \
